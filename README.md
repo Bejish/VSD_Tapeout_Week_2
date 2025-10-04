@@ -1,3 +1,21 @@
+# 🚀 Week 2: BabySoC Fundamentals & Functional Modelling
+### *From SoC Theory to Pre-Synthesis Simulation - A Complete Journey*
+
+[![SoC](https://img.shields.io/badge/SoC-BabySoC-blue?style=for-the-badge)](#)
+[![RISC-V](https://img.shields.io/badge/RISC--V-RVMYTH-green?style=for-the-badge)](#)
+[![Verilog](https://img.shields.io/badge/Verilog-HDL-orange?style=for-the-badge)](#)
+[![iVerilog](https://img.shields.io/badge/iVerilog-Simulator-red?style=for-the-badge)](#)
+[![GTKWave](https://img.shields.io/badge/GTKWave-Waveform-purple?style=for-the-badge)](#)
+[![Week](https://img.shields.io/badge/Week-2-gold?style=for-the-badge)](#)
+
+---
+
+## 🎯 **Week 2 Objective**
+
+Build a comprehensive understanding of System-on-Chip fundamentals and master functional modelling of VSDBabySoC using industry-standard simulation tools (Icarus Verilog & GTKWave).
+
+---
+
 ## 📚 Part 1: Understanding System-on-Chip (SoC) Design
 ### What is a System-on-Chip (SoC)?
 A System-on-Chip (SoC) represents the ultimate integration philosophy in modern electronics - consolidating an entire electronic system onto a single semiconductor die. Rather than requiring multiple discrete components spread across a circuit board, an SoC packages the complete functionality into one compact, efficient chip.
