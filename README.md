@@ -154,7 +154,7 @@ cd VSDBabySoC/
 ```
 
 <p align="center">
-   <img src="Images/14.png" alt="Cloning VSDBabySoC repository" width="90%">
+   <img src="Images/i4.png" alt="Cloning VSDBabySoC repository" width="90%">
 </p>
 
 *Successfully cloned the VSDBabySoC repository containing all required IP cores, testbenches, and design files.*
