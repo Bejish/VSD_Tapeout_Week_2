@@ -18,70 +18,414 @@ Build a comprehensive understanding of System-on-Chip fundamentals and master fu
 
 ## 📚 **Part 1: Understanding System-on-Chip (SoC) Design**
 
+<div align="center">
+
 ### **What is a System-on-Chip (SoC)?**
 
-A System-on-Chip (SoC) represents the ultimate integration philosophy in modern electronics - consolidating an entire electronic system onto a single semiconductor die. Rather than requiring multiple discrete components spread across a circuit board, an SoC packages the complete functionality into one compact, efficient chip.
+```mermaid
+graph TB
+    A[Traditional Multi-Chip System] -->|Evolution| B[System-on-Chip SoC]
+    
+    A1[CPU Chip] --> A
+    A2[Memory Chip] --> A
+    A3[I/O Controller] --> A
+    A4[GPU Chip] --> A
+    A5[Power IC] --> A
+    
+    B --> C[Single Silicon Die]
+    C --> D[Complete Integrated System]
+    
+    D --> E1[Superior Performance]
+    D --> E2[Lower Power]
+    D --> E3[Smaller Size]
+    D --> E4[Reduced Cost]
+    
+    style A fill:#ffcccc,stroke:#ff0000,stroke-width:2px
+    style B fill:#ccffcc,stroke:#00ff00,stroke-width:3px
+    style D fill:#cce5ff,stroke:#0066cc,stroke-width:2px
+    style E1 fill:#ffffcc,stroke:#ffcc00
+    style E2 fill:#ffffcc,stroke:#ffcc00
+    style E3 fill:#ffffcc,stroke:#ffcc00
+    style E4 fill:#ffffcc,stroke:#ffcc00
+```
 
-**Core Philosophy**: SoCs embody the principle that integration leads to efficiency. By bringing disparate components into close physical proximity on a single die, we achieve superior performance, reduced power consumption, and minimal form factor - critical requirements for today's mobile and embedded systems.
+**Core Philosophy**: Integration leads to efficiency. By consolidating disparate components onto a single semiconductor die, we achieve superior performance, reduced power consumption, and minimal form factor - the foundation of modern mobile and embedded systems.
 
-### **Key Components of a Typical SoC**
+</div>
 
-**1. Central Processing Unit (CPU) - The Digital Brain**
-- Executes instructions and manages computational tasks
-- Handles decision-making, data processing, and application logic
-- In modern SoCs, often multi-core for parallel processing capabilities
+---
 
-**2. Memory Subsystem - Data Storage Hierarchy**
-- **RAM (Random Access Memory)**: Volatile, high-speed temporary storage for active operations
-- **ROM/Flash**: Non-volatile storage retaining data when power is removed
-- Cache hierarchies for optimized data access patterns
+### **SoC Architecture: Complete System Overview**
 
-**3. Input/Output (I/O) Interfaces - External Communication**
-- Bridges between the SoC and external world
-- Includes: USB controllers, camera interfaces, audio ports, display controllers
-- Protocol-specific engines (UART, SPI, I2C, PCIe)
+<div align="center">
 
-**4. Graphics Processing Unit (GPU) - Visual Rendering Engine**
-- Specialized parallel processor for graphics and multimedia
-- Handles complex visual computations, gaming, video processing
-- Increasingly used for general-purpose parallel computing (GPGPU)
+```mermaid
+graph TB
+    subgraph SoC["🔷 System-on-Chip (SoC)"]
+        CPU[💻 CPU<br/>Digital Brain]
+        MEM[💾 Memory<br/>Storage Hierarchy]
+        GPU[🎮 GPU<br/>Visual Engine]
+        DSP[📡 DSP<br/>Signal Processing]
+        
+        PMU[⚡ PMU<br/>Power Management]
+        IO[🔌 I/O Interfaces<br/>External Communication]
+        INTERCONNECT[🔀 Interconnect Fabric<br/>High-Speed Buses]
+        IP[🧩 Specialized IPs<br/>Custom Accelerators]
+        
+        CPU <--> INTERCONNECT
+        MEM <--> INTERCONNECT
+        GPU <--> INTERCONNECT
+        DSP <--> INTERCONNECT
+        IO <--> INTERCONNECT
+        IP <--> INTERCONNECT
+        
+        PMU -.->|Power Distribution| CPU
+        PMU -.->|Power Distribution| MEM
+        PMU -.->|Power Distribution| GPU
+        PMU -.->|Power Distribution| DSP
+        PMU -.->|Power Distribution| IO
+    end
+    
+    EXT1[📱 External Devices] <--> IO
+    EXT2[🎥 Cameras] <--> IO
+    EXT3[🔊 Audio] <--> IO
+    EXT4[📡 Wireless] <--> IO
+    
+    style SoC fill:#e6f3ff,stroke:#0066cc,stroke-width:3px
+    style CPU fill:#ffcccc,stroke:#cc0000,stroke-width:2px
+    style MEM fill:#ccffcc,stroke:#00cc00,stroke-width:2px
+    style GPU fill:#ffccff,stroke:#cc00cc,stroke-width:2px
+    style DSP fill:#ffffcc,stroke:#cccc00,stroke-width:2px
+    style PMU fill:#ffcc99,stroke:#ff6600,stroke-width:2px
+    style INTERCONNECT fill:#99ccff,stroke:#0066ff,stroke-width:2px
+```
 
-**5. Digital Signal Processor (DSP) - Specialized Signal Processing**
-- Optimized for real-time signal processing operations
-- Critical for audio enhancement, video codecs, and communications
-- Performs filtering, transformations, and signal conditioning
+</div>
 
-**6. Power Management Unit (PMU) - Energy Optimization**
-- Regulates voltage and current distribution across the SoC
-- Implements dynamic power scaling and sleep states
-- Essential for battery-powered device longevity
+---
 
-**7. Interconnect Fabric - Internal Communication Network**
-- High-speed buses (AXI, AHB, APB in ARM ecosystems)
-- Enables efficient data transfer between components
-- Critical for overall system performance
+### **Core Components Deep Dive**
 
-**8. Specialized IP Blocks**
-- Wi-Fi and Bluetooth radios for wireless connectivity
-- Security engines (encryption, authentication)
-- Hardware accelerators for domain-specific tasks
-- Sensor interfaces and analog front-ends
+<div align="center">
+
+```mermaid
+mindmap
+  root((SoC<br/>Components))
+    CPU
+      Instruction Execution
+      Multi-core Processing
+      Application Logic
+      Decision Making
+    Memory
+      RAM Volatile
+      ROM/Flash Non-volatile
+      Cache L1/L2/L3
+      Memory Controller
+    GPU
+      Graphics Rendering
+      Parallel Processing
+      Video Encoding
+      GPGPU Computing
+    DSP
+      Signal Processing
+      Audio Enhancement
+      Video Codecs
+      Communications
+    I/O
+      USB Controllers
+      Display Interfaces
+      Camera Interfaces
+      Protocol Engines
+    PMU
+      Voltage Regulation
+      Power Scaling
+      Sleep States
+      Battery Management
+    Interconnect
+      AXI Bus
+      AHB Bus
+      APB Bus
+      NoC Network
+    IP Blocks
+      Wi-Fi/Bluetooth
+      Security Engines
+      Hardware Accelerators
+      Sensor Interfaces
+```
+
+</div>
+
+---
+
+### **Component Interaction Flow**
+
+<div align="center">
+
+```mermaid
+sequenceDiagram
+    participant APP as Application
+    participant CPU as CPU Core
+    participant MEM as Memory
+    participant IC as Interconnect
+    participant GPU as GPU
+    participant IO as I/O Controller
+    participant EXT as External Device
+    
+    APP->>CPU: Execute Instruction
+    CPU->>IC: Request Data
+    IC->>MEM: Fetch Data
+    MEM-->>IC: Return Data
+    IC-->>CPU: Data Delivered
+    
+    CPU->>IC: Graphics Command
+    IC->>GPU: Render Request
+    GPU->>GPU: Process Pixels
+    GPU-->>IC: Frame Ready
+    IC-->>IO: Display Data
+    IO->>EXT: Output Signal
+    
+    Note over CPU,EXT: All transactions synchronized via Interconnect Fabric
+```
+
+</div>
+
+---
 
 ### **Why SoCs Matter: The Integration Advantage**
 
-**Space Efficiency**: By collapsing multiple chips into one, SoCs enable the miniaturization that defines modern electronics - from smartphones to wearables to IoT sensors.
+<div align="center">
 
-**Energy Optimization**: Reduced interconnect distances dramatically lower power consumption. On-chip communication is orders of magnitude more efficient than inter-chip data transfer.
+```mermaid
+graph LR
+    A[SoC Integration] --> B[Space Efficiency]
+    A --> C[Energy Optimization]
+    A --> D[Performance Enhancement]
+    A --> E[Cost Reduction]
+    A --> F[Reliability]
+    
+    B --> B1[📱 Miniaturization<br/>Smartphones to IoT]
+    C --> C1[⚡ Lower Power<br/>10x-100x Improvement]
+    D --> D1[🚀 Higher Speed<br/>Reduced Latency]
+    E --> E1[💰 Single-Chip Manufacturing<br/>Simpler Assembly]
+    F --> F1[🛡️ Fewer Connections<br/>Robust Design]
+    
+    style A fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
+    style B fill:#66cc66,stroke:#339933,stroke-width:2px
+    style C fill:#ffcc66,stroke:#ff9933,stroke-width:2px
+    style D fill:#cc66ff,stroke:#9933cc,stroke-width:2px
+    style E fill:#ff6666,stroke:#cc3333,stroke-width:2px
+    style F fill:#66ccff,stroke:#3399cc,stroke-width:2px
+```
 
-**Performance Enhancement**: Proximity eliminates long wire delays, enabling higher clock frequencies and lower latency. Integrated components communicate faster than discrete systems.
+</div>
 
-**Cost Reduction**: Single-chip manufacturing amortizes costs across the entire system. Fewer components mean simpler PCB design and assembly.
+---
 
-**Reliability**: Fewer physical connections translate to fewer potential failure points. SoCs are inherently more robust than multi-chip solutions.
+### **SoC vs Traditional Multi-Chip Comparison**
+
+<div align="center">
+
+```mermaid
+graph TB
+    subgraph Traditional["❌ Traditional Multi-Chip System"]
+        T1[CPU<br/>Chip 1]
+        T2[Memory<br/>Chip 2]
+        T3[GPU<br/>Chip 3]
+        T4[I/O<br/>Chip 4]
+        T5[Power<br/>Chip 5]
+        
+        T1 -.Long Wires.-> PCB1[PCB Traces]
+        T2 -.Long Wires.-> PCB1
+        T3 -.Long Wires.-> PCB1
+        T4 -.Long Wires.-> PCB1
+        T5 -.Power Lines.-> PCB1
+        
+        PCB1 --> TCON[❌ Disadvantages]
+        TCON --> TC1[Large Size]
+        TCON --> TC2[High Power]
+        TCON --> TC3[Slow Speed]
+        TCON --> TC4[Expensive]
+    end
+    
+    subgraph SoCSystem["✅ System-on-Chip (SoC)"]
+        S1[CPU]
+        S2[Memory]
+        S3[GPU]
+        S4[I/O]
+        S5[PMU]
+        
+        S1 <--> BUS{Interconnect<br/>Fabric}
+        S2 <--> BUS
+        S3 <--> BUS
+        S4 <--> BUS
+        S5 -.-> BUS
+        
+        BUS --> SCON[✅ Advantages]
+        SCON --> SC1[Compact]
+        SCON --> SC2[Efficient]
+        SCON --> SC3[Fast]
+        SCON --> SC4[Cost-Effective]
+    end
+    
+    style Traditional fill:#ffe6e6,stroke:#cc0000,stroke-width:2px
+    style SoCSystem fill:#e6ffe6,stroke:#00cc00,stroke-width:3px
+    style TCON fill:#ffcccc,stroke:#ff0000
+    style SCON fill:#ccffcc,stroke:#00ff00
+```
+
+</div>
+
+---
+
+### **Real-World SoC Applications**
+
+<div align="center">
+
+```mermaid
+graph TB
+    SOC[System-on-Chip<br/>Technology]
+    
+    SOC --> APP1[📱 Smartphones]
+    SOC --> APP2[⌚ Wearables]
+    SOC --> APP3[🏠 IoT Devices]
+    SOC --> APP4[🚗 Automotive]
+    SOC --> APP5[💻 Tablets/Laptops]
+    SOC --> APP6[🎮 Gaming Consoles]
+    
+    APP1 --> EX1[Apple A-Series<br/>Qualcomm Snapdragon]
+    APP2 --> EX2[Smart Watch Chips<br/>Fitness Trackers]
+    APP3 --> EX3[Smart Home Sensors<br/>Edge AI Devices]
+    APP4 --> EX4[ADAS Systems<br/>Infotainment]
+    APP5 --> EX5[Apple M-Series<br/>ARM-based Laptops]
+    APP6 --> EX6[PlayStation/Xbox<br/>Nintendo Switch]
+    
+    style SOC fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
+    style APP1 fill:#ff99cc,stroke:#ff3399
+    style APP2 fill:#99ccff,stroke:#3399ff
+    style APP3 fill:#99ff99,stroke:#33cc33
+    style APP4 fill:#ffcc99,stroke:#ff9933
+    style APP5 fill:#cc99ff,stroke:#9933cc
+    style APP6 fill:#ffff99,stroke:#cccc00
+```
+
+</div>
 
 ### **VSDBabySoC: A Learning-Focused SoC Implementation**
 
+<div align="center">
+
+```mermaid
+graph TB
+    subgraph BABYSOC["🔷 VSDBabySoC - Educational SoC Platform"]
+        subgraph PLL_BLOCK["⚡ PLL - Clock Generation"]
+            PLL_IN[Reference Clock Input]
+            PLL_CORE[Phase-Locked Loop Core]
+            PLL_OUT[Stable Clock Output 8x]
+            
+            PLL_IN --> PLL_CORE
+            PLL_CORE --> PLL_OUT
+        end
+        
+        subgraph RVMYTH_BLOCK["💻 RVMYTH - RISC-V CPU"]
+            FETCH[Instruction Fetch]
+            DECODE[Instruction Decode]
+            EXECUTE[Execute]
+            REGISTER[Register File<br/>r17 Output]
+            
+            FETCH --> DECODE
+            DECODE --> EXECUTE
+            EXECUTE --> REGISTER
+        end
+        
+        subgraph DAC_BLOCK["📡 10-bit DAC"]
+            DAC_IN[Digital Input<br/>10-bit]
+            DAC_CORE[D/A Converter<br/>1024 Levels]
+            DAC_OUT[Analog Output<br/>Voltage]
+            
+            DAC_IN --> DAC_CORE
+            DAC_CORE --> DAC_OUT
+        end
+        
+        PLL_OUT -->|Synchronized Clock| RVMYTH_BLOCK
+        REGISTER -->|10-bit Digital Data| DAC_IN
+    end
+    
+    EXT_IN[External Input] --> PLL_IN
+    DAC_OUT --> EXT_OUT[External Analog Device<br/>TV/Phone/Speaker]
+    
+    style BABYSOC fill:#e6f2ff,stroke:#0066cc,stroke-width:3px
+    style PLL_BLOCK fill:#fff4e6,stroke:#ff9900,stroke-width:2px
+    style RVMYTH_BLOCK fill:#e6ffe6,stroke:#00cc00,stroke-width:2px
+    style DAC_BLOCK fill:#ffe6f2,stroke:#cc0066,stroke-width:2px
+    style PLL_OUT fill:#ffeb99,stroke:#ff9900
+    style REGISTER fill:#99ff99,stroke:#00cc00
+```
+
+</div>
+
 VSDBabySoC serves as an educational platform that distills SoC design principles into a manageable, comprehensible system. While simplified compared to commercial SoCs, it preserves the essential architectural concepts and design challenges.
+
+---
+
+### **BabySoC Component Deep Dive**
+
+<div align="center">
+
+```mermaid
+graph LR
+    subgraph COMPONENT_DETAIL["VSDBabySoC Components Breakdown"]
+        subgraph RVMYTH["💻 RVMYTH Core"]
+            R1[RISC-V ISA Implementation]
+            R2[TL-Verilog Design]
+            R3[Pipeline Architecture]
+            R4[Register File r17]
+            R5[Educational Focus]
+            
+            R1 --> R2
+            R2 --> R3
+            R3 --> R4
+            R4 --> R5
+        end
+        
+        subgraph PLL["⚡ Phase-Locked Loop"]
+            P1[Reference Input]
+            P2[Phase Detector]
+            P3[Loop Filter]
+            P4[VCO - Voltage Controlled]
+            P5[8x Frequency Output]
+            
+            P1 --> P2
+            P2 --> P3
+            P3 --> P4
+            P4 --> P5
+            P5 -.Feedback.-> P2
+        end
+        
+        subgraph DAC["📡 10-bit DAC"]
+            D1[10-bit Digital Input]
+            D2[1024 Discrete Levels]
+            D3[Weighted Resistor Network]
+            D4[Analog Voltage Output]
+            D5[External Interface]
+            
+            D1 --> D2
+            D2 --> D3
+            D3 --> D4
+            D4 --> D5
+        end
+    end
+    
+    RVMYTH -->|Processes Data| DATA_FLOW[Data Flow]
+    PLL -->|Provides Timing| DATA_FLOW
+    DAC -->|Outputs Signal| DATA_FLOW
+    
+    style RVMYTH fill:#ccffcc,stroke:#00cc00,stroke-width:2px
+    style PLL fill:#ffffcc,stroke:#ffcc00,stroke-width:2px
+    style DAC fill:#ffccff,stroke:#cc00cc,stroke-width:2px
+    style DATA_FLOW fill:#cce5ff,stroke:#0066cc,stroke-width:3px
+```
+
+</div>
 
 **Core Components of VSDBabySoC:**
 
@@ -103,9 +447,98 @@ VSDBabySoC serves as an educational platform that distills SoC design principles
 - Demonstrates mixed-signal design principles
 - 10-bit resolution provides 1024 discrete output levels
 
+---
+
+### **BabySoC Operational Flow**
+
+<div align="center">
+
+```mermaid
+graph TB
+    START([System Power-On]) --> INIT[Initialize System]
+    
+    INIT --> PLL_START[PLL Activation]
+    PLL_START --> PLL_LOCK{PLL Locked?}
+    PLL_LOCK -->|No| PLL_START
+    PLL_LOCK -->|Yes| CLK_GEN[Stable Clock Generation<br/>8x Reference]
+    
+    CLK_GEN --> CPU_RESET[RVMYTH Reset Release]
+    CPU_RESET --> CPU_FETCH[Fetch Instruction]
+    
+    CPU_FETCH --> CPU_DECODE[Decode Instruction]
+    CPU_DECODE --> CPU_EXEC[Execute Operation]
+    CPU_EXEC --> REG_UPDATE[Update Register r17]
+    
+    REG_UPDATE --> DAC_INPUT[10-bit Data to DAC]
+    DAC_INPUT --> DAC_CONVERT[Digital-to-Analog Conversion]
+    DAC_CONVERT --> ANALOG_OUT[Analog Signal Output]
+    
+    ANALOG_OUT --> EXT_DEVICE[External Device<br/>TV/Phone/Audio]
+    
+    EXT_DEVICE --> CONTINUE{Continue?}
+    CONTINUE -->|Yes| CPU_FETCH
+    CONTINUE -->|No| END([System Shutdown])
+    
+    CLK_GEN -.Timing Reference.-> CPU_FETCH
+    CLK_GEN -.Timing Reference.-> CPU_DECODE
+    CLK_GEN -.Timing Reference.-> CPU_EXEC
+    
+    style START fill:#ccffcc,stroke:#00cc00,stroke-width:2px
+    style PLL_LOCK fill:#ffffcc,stroke:#ffcc00,stroke-width:2px
+    style CLK_GEN fill:#ffeb99,stroke:#ff9900,stroke-width:2px
+    style DAC_CONVERT fill:#ffccff,stroke:#cc00cc,stroke-width:2px
+    style ANALOG_OUT fill:#ff9999,stroke:#cc0000,stroke-width:2px
+    style END fill:#cccccc,stroke:#666666,stroke-width:2px
+```
+
+</div>
+
 **System Integration**: These three IP blocks work in concert - the PLL provides synchronized timing, RVMYTH processes digital data, and the DAC interfaces with the analog domain, creating a complete functional system.
 
 ### **BabySoC's Role in the Learning Journey**
+
+<div align="center">
+
+```mermaid
+graph TB
+    THEORY[📚 SoC Theory] --> BABYSOC[🎯 VSDBabySoC<br/>Educational Platform]
+    
+    BABYSOC --> CONCEPT[Conceptual Foundation]
+    BABYSOC --> FLOW[Design Flow Experience]
+    BABYSOC --> MIXED[Mixed-Signal Learning]
+    BABYSOC --> SKILLS[Industry Skills]
+    
+    CONCEPT --> C1[Concrete Implementation<br/>of Abstract Concepts]
+    CONCEPT --> C2[Hands-on Component<br/>Understanding]
+    CONCEPT --> C3[Tangible System<br/>Verification]
+    
+    FLOW --> F1[🔄 Functional Modelling<br/>RTL Simulation]
+    FLOW --> F2[⚙️ Synthesis<br/>Logic Optimization]
+    FLOW --> F3[🏗️ Physical Design<br/>Place & Route]
+    FLOW --> F4[✅ Verification<br/>Timing & Function]
+    
+    F1 --> F2 --> F3 --> F4
+    
+    MIXED --> M1[Digital Components<br/>RVMYTH CPU]
+    MIXED --> M2[Analog Components<br/>PLL & DAC]
+    MIXED --> M3[Interface Challenges<br/>Clock Domain Crossing]
+    
+    SKILLS --> S1[Industry Tools<br/>iVerilog, GTKWave, Yosys]
+    SKILLS --> S2[Professional Methodology<br/>Testbench Verification]
+    SKILLS --> S3[Transferable Experience<br/>Real-world Applications]
+    
+    style BABYSOC fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
+    style CONCEPT fill:#99ccff,stroke:#0066cc,stroke-width:2px
+    style FLOW fill:#99ff99,stroke:#00cc00,stroke-width:2px
+    style MIXED fill:#ffcc99,stroke:#ff9900,stroke-width:2px
+    style SKILLS fill:#ff99cc,stroke:#cc0066,stroke-width:2px
+    style F1 fill:#ccffcc,stroke:#00cc00
+    style F2 fill:#ccffcc,stroke:#00cc00
+    style F3 fill:#ccffcc,stroke:#00cc00
+    style F4 fill:#ccffcc,stroke:#00cc00
+```
+
+</div>
 
 **Conceptual Foundation**: BabySoC provides a concrete implementation to anchor abstract SoC concepts. Theory becomes tangible when you can simulate, verify, and understand each component's function.
 
@@ -119,7 +552,47 @@ VSDBabySoC serves as an educational platform that distills SoC design principles
 
 **Industry-Relevant Skills**: Despite its educational focus, BabySoC uses industry-standard tools (Icarus Verilog, GTKWave, Yosys) and methodologies, building directly transferable skills.
 
+---
+
 ### **The Importance of Functional Modelling**
+
+<div align="center">
+
+```mermaid
+graph LR
+    FM[🎯 Functional Modelling<br/>RTL Simulation]
+    
+    FM --> BUG[🐛 Early Bug Detection]
+    FM --> VER[✅ Design Verification]
+    FM --> ARCH[🏗️ Architectural Exploration]
+    FM --> BEHAVIOR[📊 System Behavior Analysis]
+    FM --> REGRESSION[🔄 Regression Testing]
+    
+    BUG --> BUG1[Catch Errors at RTL Stage<br/>Cost: Hours]
+    BUG --> BUG2[vs Post-Silicon Detection<br/>Cost: Millions]
+    
+    VER --> VER1[Testbench-Driven<br/>Verification]
+    VER --> VER2[Specification<br/>Compliance]
+    
+    ARCH --> ARCH1[Rapid Design<br/>Iteration]
+    ARCH --> ARCH2[Architectural<br/>Decisions]
+    
+    BEHAVIOR --> BEH1[Waveform<br/>Analysis]
+    BEHAVIOR --> BEH2[Data Flow<br/>Insight]
+    BEHAVIOR --> BEH3[Bottleneck<br/>Identification]
+    
+    REGRESSION --> REG1[Automated<br/>Test Suites]
+    REGRESSION --> REG2[Continuous<br/>Validation]
+    
+    style FM fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
+    style BUG fill:#ff9999,stroke:#cc0000,stroke-width:2px
+    style VER fill:#99ff99,stroke:#00cc00,stroke-width:2px
+    style ARCH fill:#99ccff,stroke:#0066cc,stroke-width:2px
+    style BEHAVIOR fill:#ffcc99,stroke:#ff9900,stroke-width:2px
+    style REGRESSION fill:#cc99ff,stroke:#9933cc,stroke-width:2px
+```
+
+</div>
 
 Functional modelling - simulating RTL behavior before synthesis - is the foundation of reliable digital design. It serves multiple critical purposes:
 
@@ -139,8 +612,6 @@ Understanding these fundamentals provides context for our hands-on work. We're n
 
 ---
 
-
-
 ## 🛠️ **Part 2: VSDBabySoC Functional Simulation**
 
 ### **Environment Setup & Project Initialization**
@@ -156,7 +627,7 @@ cd VSDBabySoC/
 ```
 
 <p align="center">
-   <img src="Images/i4.png" alt="Cloning VSDBabySoC repository" width="90%">
+   <img src="screenshots/clone_repo.png" alt="Cloning VSDBabySoC repository" width="90%">
 </p>
 
 *Successfully cloned the VSDBabySoC repository containing all required IP cores, testbenches, and design files.*
@@ -181,7 +652,7 @@ pip install pyyaml click sandpiper-saas
 ```
 
 <p align="center">
-   <img src="Images/i5.png" alt="Python environment setup for SandPiper" width="90%">
+   <img src="screenshots/python_setup.png" alt="Python environment setup for SandPiper" width="90%">
 </p>
 
 *Setting up Python virtual environment and installing SandPiper-SaaS for TL-Verilog conversion.*
@@ -192,7 +663,7 @@ sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --
 ```
 
 <p align="center">
-   <img src="Images/i6.png" alt="TL-Verilog to Verilog conversion" width="90%">
+   <img src="screenshots/tlv_conversion.png" alt="TL-Verilog to Verilog conversion" width="90%">
 </p>
 
 *SandPiper-SaaS successfully converted rvmyth.tlv into synthesizable Verilog (rvmyth.v), ready for simulation.*
@@ -218,7 +689,7 @@ cd output/pre_synth_sim
 ```
 
 <p align="center">
-   <img src="Images/i1.png" alt="Pre-synthesis simulation execution" width="90%">
+   <img src="screenshots/simulation_run.png" alt="Pre-synthesis simulation execution" width="90%">
 </p>
 
 *Icarus Verilog compiles and executes the testbench, generating pre_synth_sim.vcd for waveform analysis.*
@@ -235,7 +706,7 @@ gtkwave output/pre_synth_sim/pre_synth_sim.vcd
 **Initial Waveform View - Digital Signals:**
 
 <p align="center">
-   <img src="Images/i2.png" alt="GTKWave showing digital signals" width="90%">
+   <img src="screenshots/gtkwave_digital.png" alt="GTKWave showing digital signals" width="90%">
 </p>
 
 *Key signals displayed: **CLK** (stable clock from PLL), **reset** (system initialization), **RV_TO_DAC[9:0]** (10-bit RVMYTH output), and **OUT** (DAC output in digital view).*
@@ -249,7 +720,7 @@ To properly view the DAC's analog output behavior, we change the display format:
 2. Right-click → Data Format → Analog → Step
 
 <p align="center">
-   <img src="Images/i3.png" alt="Changing OUT signal to analog view" width="90%">
+   <img src="screenshots/gtkwave_analog_menu.png" alt="Changing OUT signal to analog view" width="90%">
 </p>
 
 *Configuring GTKWave to display the DAC OUT signal in analog step format for realistic visualization.*
@@ -259,7 +730,7 @@ To properly view the DAC's analog output behavior, we change the display format:
 **Final Analog Waveform:**
 
 <p align="center">
-   <img src="Images/i7.png" alt="DAC output in analog representation" width="90%">
+   <img src="screenshots/gtkwave_analog_wave.png" alt="DAC output in analog representation" width="90%">
 </p>
 
 *DAC output displayed as analog waveform showing the staircase conversion of digital values from RVMYTH's register r17 into analog voltage levels. The stepping behavior clearly demonstrates the 10-bit quantization of the digital-to-analog conversion process.*
@@ -385,3 +856,5 @@ With solid functional modelling completed, the next phases of the journey includ
 - **GTKWave**: [http://gtkwave.sourceforge.net/](http://gtkwave.sourceforge.net/)
 
 ---
+
+*This documentation represents Week 2 of the SFAL-VSD SoC Design Journey - From architectural understanding to functional verification.*
