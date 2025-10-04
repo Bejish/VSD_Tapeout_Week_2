@@ -497,49 +497,6 @@ graph TB
 
 ### **BabySoC's Role in the Learning Journey**
 
-<div align="center">
-
-```mermaid
-graph TB
-    THEORY[📚 SoC Theory] --> BABYSOC[🎯 VSDBabySoC<br/>Educational Platform]
-    
-    BABYSOC --> CONCEPT[Conceptual Foundation]
-    BABYSOC --> FLOW[Design Flow Experience]
-    BABYSOC --> MIXED[Mixed-Signal Learning]
-    BABYSOC --> SKILLS[Industry Skills]
-    
-    CONCEPT --> C1[Concrete Implementation<br/>of Abstract Concepts]
-    CONCEPT --> C2[Hands-on Component<br/>Understanding]
-    CONCEPT --> C3[Tangible System<br/>Verification]
-    
-    FLOW --> F1[🔄 Functional Modelling<br/>RTL Simulation]
-    FLOW --> F2[⚙️ Synthesis<br/>Logic Optimization]
-    FLOW --> F3[🏗️ Physical Design<br/>Place & Route]
-    FLOW --> F4[✅ Verification<br/>Timing & Function]
-    
-    F1 --> F2 --> F3 --> F4
-    
-    MIXED --> M1[Digital Components<br/>RVMYTH CPU]
-    MIXED --> M2[Analog Components<br/>PLL & DAC]
-    MIXED --> M3[Interface Challenges<br/>Clock Domain Crossing]
-    
-    SKILLS --> S1[Industry Tools<br/>iVerilog, GTKWave, Yosys]
-    SKILLS --> S2[Professional Methodology<br/>Testbench Verification]
-    SKILLS --> S3[Transferable Experience<br/>Real-world Applications]
-    
-    style BABYSOC fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
-    style CONCEPT fill:#99ccff,stroke:#0066cc,stroke-width:2px
-    style FLOW fill:#99ff99,stroke:#00cc00,stroke-width:2px
-    style MIXED fill:#ffcc99,stroke:#ff9900,stroke-width:2px
-    style SKILLS fill:#ff99cc,stroke:#cc0066,stroke-width:2px
-    style F1 fill:#ccffcc,stroke:#00cc00
-    style F2 fill:#ccffcc,stroke:#00cc00
-    style F3 fill:#ccffcc,stroke:#00cc00
-    style F4 fill:#ccffcc,stroke:#00cc00
-```
-
-</div>
-
 **Conceptual Foundation**: BabySoC provides a concrete implementation to anchor abstract SoC concepts. Theory becomes tangible when you can simulate, verify, and understand each component's function.
 
 **Design Flow Experience**: Working with BabySoC exposes the complete digital design flow:
@@ -552,47 +509,7 @@ graph TB
 
 **Industry-Relevant Skills**: Despite its educational focus, BabySoC uses industry-standard tools (Icarus Verilog, GTKWave, Yosys) and methodologies, building directly transferable skills.
 
----
-
 ### **The Importance of Functional Modelling**
-
-<div align="center">
-
-```mermaid
-graph LR
-    FM[🎯 Functional Modelling<br/>RTL Simulation]
-    
-    FM --> BUG[🐛 Early Bug Detection]
-    FM --> VER[✅ Design Verification]
-    FM --> ARCH[🏗️ Architectural Exploration]
-    FM --> BEHAVIOR[📊 System Behavior Analysis]
-    FM --> REGRESSION[🔄 Regression Testing]
-    
-    BUG --> BUG1[Catch Errors at RTL Stage<br/>Cost: Hours]
-    BUG --> BUG2[vs Post-Silicon Detection<br/>Cost: Millions]
-    
-    VER --> VER1[Testbench-Driven<br/>Verification]
-    VER --> VER2[Specification<br/>Compliance]
-    
-    ARCH --> ARCH1[Rapid Design<br/>Iteration]
-    ARCH --> ARCH2[Architectural<br/>Decisions]
-    
-    BEHAVIOR --> BEH1[Waveform<br/>Analysis]
-    BEHAVIOR --> BEH2[Data Flow<br/>Insight]
-    BEHAVIOR --> BEH3[Bottleneck<br/>Identification]
-    
-    REGRESSION --> REG1[Automated<br/>Test Suites]
-    REGRESSION --> REG2[Continuous<br/>Validation]
-    
-    style FM fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
-    style BUG fill:#ff9999,stroke:#cc0000,stroke-width:2px
-    style VER fill:#99ff99,stroke:#00cc00,stroke-width:2px
-    style ARCH fill:#99ccff,stroke:#0066cc,stroke-width:2px
-    style BEHAVIOR fill:#ffcc99,stroke:#ff9900,stroke-width:2px
-    style REGRESSION fill:#cc99ff,stroke:#9933cc,stroke-width:2px
-```
-
-</div>
 
 Functional modelling - simulating RTL behavior before synthesis - is the foundation of reliable digital design. It serves multiple critical purposes:
 
