@@ -16,69 +16,277 @@ Build a comprehensive understanding of System-on-Chip fundamentals and master fu
 
 ---
 
-## 📚 **Part 1: Understanding System-on-Chip (SoC) Design**
+🚀 Week 2: BabySoC Fundamentals & Functional Modelling
+From SoC Theory to Pre-Synthesis Simulation - A Complete Journey
+Show Image
+Show Image
+Show Image
+Show Image
+Show Image
+Show Image
 
-### **What is a System-on-Chip (SoC)?**
+🎯 Week 2 Objective
+Build a comprehensive understanding of System-on-Chip fundamentals and master functional modelling of VSDBabySoC using industry-standard simulation tools (Icarus Verilog & GTKWave).
 
-A System-on-Chip (SoC) represents the ultimate integration philosophy in modern electronics - consolidating an entire electronic system onto a single semiconductor die. Rather than requiring multiple discrete components spread across a circuit board, an SoC packages the complete functionality into one compact, efficient chip.
+📚 Part 1: Understanding System-on-Chip (SoC) Design
+<div align="center">
+What is a System-on-Chip (SoC)?
+mermaidgraph TB
+    A[Traditional Multi-Chip System] -->|Evolution| B[System-on-Chip SoC]
+    
+    A1[CPU Chip] --> A
+    A2[Memory Chip] --> A
+    A3[I/O Controller] --> A
+    A4[GPU Chip] --> A
+    A5[Power IC] --> A
+    
+    B --> C[Single Silicon Die]
+    C --> D[Complete Integrated System]
+    
+    D --> E1[Superior Performance]
+    D --> E2[Lower Power]
+    D --> E3[Smaller Size]
+    D --> E4[Reduced Cost]
+    
+    style A fill:#ffcccc,stroke:#ff0000,stroke-width:2px
+    style B fill:#ccffcc,stroke:#00ff00,stroke-width:3px
+    style D fill:#cce5ff,stroke:#0066cc,stroke-width:2px
+    style E1 fill:#ffffcc,stroke:#ffcc00
+    style E2 fill:#ffffcc,stroke:#ffcc00
+    style E3 fill:#ffffcc,stroke:#ffcc00
+    style E4 fill:#ffffcc,stroke:#ffcc00
+Core Philosophy: Integration leads to efficiency. By consolidating disparate components onto a single semiconductor die, we achieve superior performance, reduced power consumption, and minimal form factor - the foundation of modern mobile and embedded systems.
+</div>
 
-**Core Philosophy**: SoCs embody the principle that integration leads to efficiency. By bringing disparate components into close physical proximity on a single die, we achieve superior performance, reduced power consumption, and minimal form factor - critical requirements for today's mobile and embedded systems.
+SoC Architecture: Complete System Overview
+<div align="center">
+```mermaid
+graph TB
+    subgraph SoC["🔷 System-on-Chip (SoC)"]
+        CPU[💻 CPU<br/>Digital Brain]
+        MEM[💾 Memory<br/>Storage Hierarchy]
+        GPU[🎮 GPU<br/>Visual Engine]
+        DSP[📡 DSP<br/>Signal Processing]
+    PMU[⚡ PMU<br/>Power Management]
+    IO[🔌 I/O Interfaces<br/>External Communication]
+    INTERCONNECT[🔀 Interconnect Fabric<br/>High-Speed Buses]
+    IP[🧩 Specialized IPs<br/>Custom Accelerators]
+    
+    CPU <--> INTERCONNECT
+    MEM <--> INTERCONNECT
+    GPU <--> INTERCONNECT
+    DSP <--> INTERCONNECT
+    IO <--> INTERCONNECT
+    IP <--> INTERCONNECT
+    
+    PMU -.->|Power Distribution| CPU
+    PMU -.->|Power Distribution| MEM
+    PMU -.->|Power Distribution| GPU
+    PMU -.->|Power Distribution| DSP
+    PMU -.->|Power Distribution| IO
+end
 
-### **Key Components of a Typical SoC**
+EXT1[📱 External Devices] <--> IO
+EXT2[🎥 Cameras] <--> IO
+EXT3[🔊 Audio] <--> IO
+EXT4[📡 Wireless] <--> IO
 
-**1. Central Processing Unit (CPU) - The Digital Brain**
-- Executes instructions and manages computational tasks
-- Handles decision-making, data processing, and application logic
-- In modern SoCs, often multi-core for parallel processing capabilities
+style SoC fill:#e6f3ff,stroke:#0066cc,stroke-width:3px
+style CPU fill:#ffcccc,stroke:#cc0000,stroke-width:2px
+style MEM fill:#ccffcc,stroke:#00cc00,stroke-width:2px
+style GPU fill:#ffccff,stroke:#cc00cc,stroke-width:2px
+style DSP fill:#ffffcc,stroke:#cccc00,stroke-width:2px
+style PMU fill:#ffcc99,stroke:#ff6600,stroke-width:2px
+style INTERCONNECT fill:#99ccff,stroke:#0066ff,stroke-width:2px
 
-**2. Memory Subsystem - Data Storage Hierarchy**
-- **RAM (Random Access Memory)**: Volatile, high-speed temporary storage for active operations
-- **ROM/Flash**: Non-volatile storage retaining data when power is removed
-- Cache hierarchies for optimized data access patterns
+</div>
 
-**3. Input/Output (I/O) Interfaces - External Communication**
-- Bridges between the SoC and external world
-- Includes: USB controllers, camera interfaces, audio ports, display controllers
-- Protocol-specific engines (UART, SPI, I2C, PCIe)
+---
 
-**4. Graphics Processing Unit (GPU) - Visual Rendering Engine**
-- Specialized parallel processor for graphics and multimedia
-- Handles complex visual computations, gaming, video processing
-- Increasingly used for general-purpose parallel computing (GPGPU)
+### **Core Components Deep Dive**
 
-**5. Digital Signal Processor (DSP) - Specialized Signal Processing**
-- Optimized for real-time signal processing operations
-- Critical for audio enhancement, video codecs, and communications
-- Performs filtering, transformations, and signal conditioning
+<div align="center">
+```mermaid
+mindmap
+  root((SoC<br/>Components))
+    CPU
+      Instruction Execution
+      Multi-core Processing
+      Application Logic
+      Decision Making
+    Memory
+      RAM Volatile
+      ROM/Flash Non-volatile
+      Cache L1/L2/L3
+      Memory Controller
+    GPU
+      Graphics Rendering
+      Parallel Processing
+      Video Encoding
+      GPGPU Computing
+    DSP
+      Signal Processing
+      Audio Enhancement
+      Video Codecs
+      Communications
+    I/O
+      USB Controllers
+      Display Interfaces
+      Camera Interfaces
+      Protocol Engines
+    PMU
+      Voltage Regulation
+      Power Scaling
+      Sleep States
+      Battery Management
+    Interconnect
+      AXI Bus
+      AHB Bus
+      APB Bus
+      NoC Network
+    IP Blocks
+      Wi-Fi/Bluetooth
+      Security Engines
+      Hardware Accelerators
+      Sensor Interfaces
+</div>
 
-**6. Power Management Unit (PMU) - Energy Optimization**
-- Regulates voltage and current distribution across the SoC
-- Implements dynamic power scaling and sleep states
-- Essential for battery-powered device longevity
+Component Interaction Flow
+<div align="center">
+```mermaid
+sequenceDiagram
+    participant APP as Application
+    participant CPU as CPU Core
+    participant MEM as Memory
+    participant IC as Interconnect
+    participant GPU as GPU
+    participant IO as I/O Controller
+    participant EXT as External Device
+APP->>CPU: Execute Instruction
+CPU->>IC: Request Data
+IC->>MEM: Fetch Data
+MEM-->>IC: Return Data
+IC-->>CPU: Data Delivered
 
-**7. Interconnect Fabric - Internal Communication Network**
-- High-speed buses (AXI, AHB, APB in ARM ecosystems)
-- Enables efficient data transfer between components
-- Critical for overall system performance
+CPU->>IC: Graphics Command
+IC->>GPU: Render Request
+GPU->>GPU: Process Pixels
+GPU-->>IC: Frame Ready
+IC-->>IO: Display Data
+IO->>EXT: Output Signal
 
-**8. Specialized IP Blocks**
-- Wi-Fi and Bluetooth radios for wireless connectivity
-- Security engines (encryption, authentication)
-- Hardware accelerators for domain-specific tasks
-- Sensor interfaces and analog front-ends
+Note over CPU,EXT: All transactions synchronized via Interconnect Fabric
+
+</div>
+
+---
 
 ### **Why SoCs Matter: The Integration Advantage**
 
-**Space Efficiency**: By collapsing multiple chips into one, SoCs enable the miniaturization that defines modern electronics - from smartphones to wearables to IoT sensors.
+<div align="center">
+```mermaid
+graph LR
+    A[SoC Integration] --> B[Space Efficiency]
+    A --> C[Energy Optimization]
+    A --> D[Performance Enhancement]
+    A --> E[Cost Reduction]
+    A --> F[Reliability]
+    
+    B --> B1[📱 Miniaturization<br/>Smartphones to IoT]
+    C --> C1[⚡ Lower Power<br/>10x-100x Improvement]
+    D --> D1[🚀 Higher Speed<br/>Reduced Latency]
+    E --> E1[💰 Single-Chip Manufacturing<br/>Simpler Assembly]
+    F --> F1[🛡️ Fewer Connections<br/>Robust Design]
+    
+    style A fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
+    style B fill:#66cc66,stroke:#339933,stroke-width:2px
+    style C fill:#ffcc66,stroke:#ff9933,stroke-width:2px
+    style D fill:#cc66ff,stroke:#9933cc,stroke-width:2px
+    style E fill:#ff6666,stroke:#cc3333,stroke-width:2px
+    style F fill:#66ccff,stroke:#3399cc,stroke-width:2px
+</div>
 
-**Energy Optimization**: Reduced interconnect distances dramatically lower power consumption. On-chip communication is orders of magnitude more efficient than inter-chip data transfer.
+SoC vs Traditional Multi-Chip Comparison
+<div align="center">
+```mermaid
+graph TB
+    subgraph Traditional["❌ Traditional Multi-Chip System"]
+        T1[CPU<br/>Chip 1]
+        T2[Memory<br/>Chip 2]
+        T3[GPU<br/>Chip 3]
+        T4[I/O<br/>Chip 4]
+        T5[Power<br/>Chip 5]
+    T1 -.Long Wires.-> PCB1[PCB Traces]
+    T2 -.Long Wires.-> PCB1
+    T3 -.Long Wires.-> PCB1
+    T4 -.Long Wires.-> PCB1
+    T5 -.Power Lines.-> PCB1
+    
+    PCB1 --> TCON[❌ Disadvantages]
+    TCON --> TC1[Large Size]
+    TCON --> TC2[High Power]
+    TCON --> TC3[Slow Speed]
+    TCON --> TC4[Expensive]
+end
 
-**Performance Enhancement**: Proximity eliminates long wire delays, enabling higher clock frequencies and lower latency. Integrated components communicate faster than discrete systems.
+subgraph SoCSystem["✅ System-on-Chip (SoC)"]
+    S1[CPU]
+    S2[Memory]
+    S3[GPU]
+    S4[I/O]
+    S5[PMU]
+    
+    S1 <--> BUS{Interconnect<br/>Fabric}
+    S2 <--> BUS
+    S3 <--> BUS
+    S4 <--> BUS
+    S5 -.-> BUS
+    
+    BUS --> SCON[✅ Advantages]
+    SCON --> SC1[Compact]
+    SCON --> SC2[Efficient]
+    SCON --> SC3[Fast]
+    SCON --> SC4[Cost-Effective]
+end
 
-**Cost Reduction**: Single-chip manufacturing amortizes costs across the entire system. Fewer components mean simpler PCB design and assembly.
+style Traditional fill:#ffe6e6,stroke:#cc0000,stroke-width:2px
+style SoCSystem fill:#e6ffe6,stroke:#00cc00,stroke-width:3px
+style TCON fill:#ffcccc,stroke:#ff0000
+style SCON fill:#ccffcc,stroke:#00ff00
 
-**Reliability**: Fewer physical connections translate to fewer potential failure points. SoCs are inherently more robust than multi-chip solutions.
+</div>
 
+---
+
+### **Real-World SoC Applications**
+
+<div align="center">
+```mermaid
+graph TB
+    SOC[System-on-Chip<br/>Technology]
+    
+    SOC --> APP1[📱 Smartphones]
+    SOC --> APP2[⌚ Wearables]
+    SOC --> APP3[🏠 IoT Devices]
+    SOC --> APP4[🚗 Automotive]
+    SOC --> APP5[💻 Tablets/Laptops]
+    SOC --> APP6[🎮 Gaming Consoles]
+    
+    APP1 --> EX1[Apple A-Series<br/>Qualcomm Snapdragon]
+    APP2 --> EX2[Smart Watch Chips<br/>Fitness Trackers]
+    APP3 --> EX3[Smart Home Sensors<br/>Edge AI Devices]
+    APP4 --> EX4[ADAS Systems<br/>Infotainment]
+    APP5 --> EX5[Apple M-Series<br/>ARM-based Laptops]
+    APP6 --> EX6[PlayStation/Xbox<br/>Nintendo Switch]
+    
+    style SOC fill:#0066cc,stroke:#003366,stroke-width:3px,color:#fff
+    style APP1 fill:#ff99cc,stroke:#ff3399
+    style APP2 fill:#99ccff,stroke:#3399ff
+    style APP3 fill:#99ff99,stroke:#33cc33
+    style APP4 fill:#ffcc99,stroke:#ff9933
+    style APP5 fill:#cc99ff,stroke:#9933cc
+    style APP6 fill:#ffff99,stroke:#cccc00
+</div>
 ### **VSDBabySoC: A Learning-Focused SoC Implementation**
 
 VSDBabySoC serves as an educational platform that distills SoC design principles into a manageable, comprehensible system. While simplified compared to commercial SoCs, it preserves the essential architectural concepts and design challenges.
@@ -383,5 +591,3 @@ With solid functional modelling completed, the next phases of the journey includ
 - **GTKWave**: [http://gtkwave.sourceforge.net/](http://gtkwave.sourceforge.net/)
 
 ---
-
-*This documentation represents Week 2 of the SFAL-VSD SoC Design Journey - From architectural understanding to functional verification.*
