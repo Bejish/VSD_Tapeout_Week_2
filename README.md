@@ -233,7 +233,7 @@ gtkwave output/pre_synth_sim/pre_synth_sim.vcd
 **Initial Waveform View - Digital Signals:**
 
 <p align="center">
-   <img src="Images/12.png" alt="GTKWave showing digital signals" width="90%">
+   <img src="Images/i2.png" alt="GTKWave showing digital signals" width="90%">
 </p>
 
 *Key signals displayed: **CLK** (stable clock from PLL), **reset** (system initialization), **RV_TO_DAC[9:0]** (10-bit RVMYTH output), and **OUT** (DAC output in digital view).*
