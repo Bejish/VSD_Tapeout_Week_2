@@ -1,185 +1,47 @@
-# 🚀 Week 2: BabySoC Fundamentals & Functional Modelling
-### *From SoC Theory to Pre-Synthesis Simulation - A Complete Journey*
-
-[![SoC](https://img.shields.io/badge/SoC-BabySoC-blue?style=for-the-badge)](#)
-[![RISC-V](https://img.shields.io/badge/RISC--V-RVMYTH-green?style=for-the-badge)](#)
-[![Verilog](https://img.shields.io/badge/Verilog-HDL-orange?style=for-the-badge)](#)
-[![iVerilog](https://img.shields.io/badge/iVerilog-Simulator-red?style=for-the-badge)](#)
-[![GTKWave](https://img.shields.io/badge/GTKWave-Waveform-purple?style=for-the-badge)](#)
-[![Week](https://img.shields.io/badge/Week-2-gold?style=for-the-badge)](#)
-
----
-
-## 🎯 **Week 2 Objective**
-
-Build a comprehensive understanding of System-on-Chip fundamentals and master functional modelling of VSDBabySoC using industry-standard simulation tools (Icarus Verilog & GTKWave).
-
----
-
-🚀 Week 2: BabySoC Fundamentals & Functional Modelling
-From SoC Theory to Pre-Synthesis Simulation - A Complete Journey
-Show Image
-Show Image
-Show Image
-Show Image
-Show Image
-Show Image
-
-🎯 Week 2 Objective
-Build a comprehensive understanding of System-on-Chip fundamentals and master functional modelling of VSDBabySoC using industry-standard simulation tools (Icarus Verilog & GTKWave).
-
-📚 Part 1: Understanding System-on-Chip (SoC) Design
-<div align="center">
-What is a System-on-Chip (SoC)?
-mermaidgraph TB
-    A[Traditional Multi-Chip System] -->|Evolution| B[System-on-Chip SoC]
-    
-    A1[CPU Chip] --> A
-    A2[Memory Chip] --> A
-    A3[I/O Controller] --> A
-    A4[GPU Chip] --> A
-    A5[Power IC] --> A
-    
-    B --> C[Single Silicon Die]
-    C --> D[Complete Integrated System]
-    
-    D --> E1[Superior Performance]
-    D --> E2[Lower Power]
-    D --> E3[Smaller Size]
-    D --> E4[Reduced Cost]
-    
-    style A fill:#ffcccc,stroke:#ff0000,stroke-width:2px
-    style B fill:#ccffcc,stroke:#00ff00,stroke-width:3px
-    style D fill:#cce5ff,stroke:#0066cc,stroke-width:2px
-    style E1 fill:#ffffcc,stroke:#ffcc00
-    style E2 fill:#ffffcc,stroke:#ffcc00
-    style E3 fill:#ffffcc,stroke:#ffcc00
-    style E4 fill:#ffffcc,stroke:#ffcc00
-Core Philosophy: Integration leads to efficiency. By consolidating disparate components onto a single semiconductor die, we achieve superior performance, reduced power consumption, and minimal form factor - the foundation of modern mobile and embedded systems.
-</div>
-
-SoC Architecture: Complete System Overview
-<div align="center">
-```mermaid
-graph TB
-    subgraph SoC["🔷 System-on-Chip (SoC)"]
-        CPU[💻 CPU<br/>Digital Brain]
-        MEM[💾 Memory<br/>Storage Hierarchy]
-        GPU[🎮 GPU<br/>Visual Engine]
-        DSP[📡 DSP<br/>Signal Processing]
-    PMU[⚡ PMU<br/>Power Management]
-    IO[🔌 I/O Interfaces<br/>External Communication]
-    INTERCONNECT[🔀 Interconnect Fabric<br/>High-Speed Buses]
-    IP[🧩 Specialized IPs<br/>Custom Accelerators]
-    
-    CPU <--> INTERCONNECT
-    MEM <--> INTERCONNECT
-    GPU <--> INTERCONNECT
-    DSP <--> INTERCONNECT
-    IO <--> INTERCONNECT
-    IP <--> INTERCONNECT
-    
-    PMU -.->|Power Distribution| CPU
-    PMU -.->|Power Distribution| MEM
-    PMU -.->|Power Distribution| GPU
-    PMU -.->|Power Distribution| DSP
-    PMU -.->|Power Distribution| IO
-end
-
-EXT1[📱 External Devices] <--> IO
-EXT2[🎥 Cameras] <--> IO
-EXT3[🔊 Audio] <--> IO
-EXT4[📡 Wireless] <--> IO
-
-style SoC fill:#e6f3ff,stroke:#0066cc,stroke-width:3px
-style CPU fill:#ffcccc,stroke:#cc0000,stroke-width:2px
-style MEM fill:#ccffcc,stroke:#00cc00,stroke-width:2px
-style GPU fill:#ffccff,stroke:#cc00cc,stroke-width:2px
-style DSP fill:#ffffcc,stroke:#cccc00,stroke-width:2px
-style PMU fill:#ffcc99,stroke:#ff6600,stroke-width:2px
-style INTERCONNECT fill:#99ccff,stroke:#0066ff,stroke-width:2px
-
-</div>
-
----
-
-### **Core Components Deep Dive**
-
-<div align="center">
-```mermaid
-mindmap
-  root((SoC<br/>Components))
-    CPU
-      Instruction Execution
-      Multi-core Processing
-      Application Logic
-      Decision Making
-    Memory
-      RAM Volatile
-      ROM/Flash Non-volatile
-      Cache L1/L2/L3
-      Memory Controller
-    GPU
-      Graphics Rendering
-      Parallel Processing
-      Video Encoding
-      GPGPU Computing
-    DSP
-      Signal Processing
-      Audio Enhancement
-      Video Codecs
-      Communications
-    I/O
-      USB Controllers
-      Display Interfaces
-      Camera Interfaces
-      Protocol Engines
-    PMU
-      Voltage Regulation
-      Power Scaling
-      Sleep States
-      Battery Management
-    Interconnect
-      AXI Bus
-      AHB Bus
-      APB Bus
-      NoC Network
-    IP Blocks
-      Wi-Fi/Bluetooth
-      Security Engines
-      Hardware Accelerators
-      Sensor Interfaces
-</div>
-
-Component Interaction Flow
-<div align="center">
-```mermaid
-sequenceDiagram
-    participant APP as Application
-    participant CPU as CPU Core
-    participant MEM as Memory
-    participant IC as Interconnect
-    participant GPU as GPU
-    participant IO as I/O Controller
-    participant EXT as External Device
-APP->>CPU: Execute Instruction
-CPU->>IC: Request Data
-IC->>MEM: Fetch Data
-MEM-->>IC: Return Data
-IC-->>CPU: Data Delivered
-
-CPU->>IC: Graphics Command
-IC->>GPU: Render Request
-GPU->>GPU: Process Pixels
-GPU-->>IC: Frame Ready
-IC-->>IO: Display Data
-IO->>EXT: Output Signal
-
-Note over CPU,EXT: All transactions synchronized via Interconnect Fabric
-
-</div>
-
----
+## 📚 Part 1: Understanding System-on-Chip (SoC) Design
+### What is a System-on-Chip (SoC)?
+A System-on-Chip (SoC) represents the ultimate integration philosophy in modern electronics - consolidating an entire electronic system onto a single semiconductor die. Rather than requiring multiple discrete components spread across a circuit board, an SoC packages the complete functionality into one compact, efficient chip.
+Core Philosophy: SoCs embody the principle that integration leads to efficiency. By bringing disparate components into close physical proximity on a single die, we achieve superior performance, reduced power consumption, and minimal form factor - critical requirements for today's mobile and embedded systems.
+### Key Components of a Typical SoC
+1. Central Processing Unit (CPU) - The Digital Brain
+- Executes instructions and manages computational tasks
+- Handles decision-making, data processing, and application logic
+- In modern SoCs, often multi-core for parallel processing capabilities
+2. Memory Subsystem - Data Storage Hierarchy
+- RAM (Random Access Memory): Volatile, high-speed temporary storage for active operations
+- ROM/Flash: Non-volatile storage retaining data when power is removed
+- Cache hierarchies for optimized data access patterns
+3. Input/Output (I/O) Interfaces - External Communication
+- Bridges between the SoC and external world
+- Includes: USB controllers, camera interfaces, audio ports, display controllers
+- Protocol-specific engines (UART, SPI, I2C, PCIe)
+4. Graphics Processing Unit (GPU) - Visual Rendering Engine
+- Specialized parallel processor for graphics and multimedia
+- Handles complex visual computations, gaming, video processing
+- Increasingly used for general-purpose parallel computing (GPGPU)
+5. Digital Signal Processor (DSP) - Specialized Signal Processing
+- Optimized for real-time signal processing operations
+- Critical for audio enhancement, video codecs, and communications
+- Performs filtering, transformations, and signal conditioning
+6. Power Management Unit (PMU) - Energy Optimization
+- Regulates voltage and current distribution across the SoC
+- Implements dynamic power scaling and sleep states
+- Essential for battery-powered device longevity
+7. Interconnect Fabric - Internal Communication Network
+- High-speed buses (AXI, AHB, APB in ARM ecosystems)
+- Enables efficient data transfer between components
+- Critical for overall system performance
+8. Specialized IP Blocks
+- Wi-Fi and Bluetooth radios for wireless connectivity
+- Security engines (encryption, authentication)
+- Hardware accelerators for domain-specific tasks
+- Sensor interfaces and analog front-ends
+### Why SoCs Matter: The Integration Advantage
+Space Efficiency: By collapsing multiple chips into one, SoCs enable the miniaturization that defines modern electronics - from smartphones to wearables to IoT sensors.
+Energy Optimization: Reduced interconnect distances dramatically lower power consumption. On-chip communication is orders of magnitude more efficient than inter-chip data transfer.
+Performance Enhancement: Proximity eliminates long wire delays, enabling higher clock frequencies and lower latency. Integrated components communicate faster than discrete systems.
+Cost Reduction: Single-chip manufacturing amortizes costs across the entire system. Fewer components mean simpler PCB design and assembly.
+Reliability: Fewer physical connections translate to fewer potential failure points. SoCs are inherently more robust than multi-chip solutions.
 
 ### **Why SoCs Matter: The Integration Advantage**
 
