@@ -154,7 +154,7 @@ cd VSDBabySoC/
 ```
 
 <p align="center">
-   <img src="screenshots/14.png" alt="Cloning VSDBabySoC repository" width="90%">
+   <img src="Images/14.png" alt="Cloning VSDBabySoC repository" width="90%">
 </p>
 
 *Successfully cloned the VSDBabySoC repository containing all required IP cores, testbenches, and design files.*
@@ -179,7 +179,7 @@ pip install pyyaml click sandpiper-saas
 ```
 
 <p align="center">
-   <img src="screenshots/i5.png" alt="Python environment setup for SandPiper" width="90%">
+   <img src="Images/i5.png" alt="Python environment setup for SandPiper" width="90%">
 </p>
 
 *Setting up Python virtual environment and installing SandPiper-SaaS for TL-Verilog conversion.*
@@ -190,7 +190,7 @@ sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --
 ```
 
 <p align="center">
-   <img src="screenshots/i6.png" alt="TL-Verilog to Verilog conversion" width="90%">
+   <img src="Images/i6.png" alt="TL-Verilog to Verilog conversion" width="90%">
 </p>
 
 *SandPiper-SaaS successfully converted rvmyth.tlv into synthesizable Verilog (rvmyth.v), ready for simulation.*
@@ -216,7 +216,7 @@ cd output/pre_synth_sim
 ```
 
 <p align="center">
-   <img src="screenshots/i1.png" alt="Pre-synthesis simulation execution" width="90%">
+   <img src="Images/i1.png" alt="Pre-synthesis simulation execution" width="90%">
 </p>
 
 *Icarus Verilog compiles and executes the testbench, generating pre_synth_sim.vcd for waveform analysis.*
@@ -233,7 +233,7 @@ gtkwave output/pre_synth_sim/pre_synth_sim.vcd
 **Initial Waveform View - Digital Signals:**
 
 <p align="center">
-   <img src="screenshots/12.png" alt="GTKWave showing digital signals" width="90%">
+   <img src="Images/12.png" alt="GTKWave showing digital signals" width="90%">
 </p>
 
 *Key signals displayed: **CLK** (stable clock from PLL), **reset** (system initialization), **RV_TO_DAC[9:0]** (10-bit RVMYTH output), and **OUT** (DAC output in digital view).*
@@ -247,7 +247,7 @@ To properly view the DAC's analog output behavior, we change the display format:
 2. Right-click → Data Format → Analog → Step
 
 <p align="center">
-   <img src="screenshots/i3.png" alt="Changing OUT signal to analog view" width="90%">
+   <img src="Images/i3.png" alt="Changing OUT signal to analog view" width="90%">
 </p>
 
 *Configuring GTKWave to display the DAC OUT signal in analog step format for realistic visualization.*
@@ -257,7 +257,7 @@ To properly view the DAC's analog output behavior, we change the display format:
 **Final Analog Waveform:**
 
 <p align="center">
-   <img src="screenshots/gtkwave_analog_wave.png" alt="DAC output in analog representation" width="90%">
+   <img src="Images/i7.png" alt="DAC output in analog representation" width="90%">
 </p>
 
 *DAC output displayed as analog waveform showing the staircase conversion of digital values from RVMYTH's register r17 into analog voltage levels. The stepping behavior clearly demonstrates the 10-bit quantization of the digital-to-analog conversion process.*
